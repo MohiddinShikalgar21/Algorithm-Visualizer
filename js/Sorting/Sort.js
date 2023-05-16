@@ -20,12 +20,12 @@ async function sort(){
     }
     switch(type){
         case -1: alert("Please select a sort type"); break;
-        case 0 : s.bubbleSort(); break;
+       // case 0 : s.bubbleSort(); break;
         case 1 : s.insertionSort(); break;
         case 2 : s.mergeSort(); break;
-        case 3 : s.selectionSort(); break;
+       // case 3 : s.selectionSort(); break;
         case 4 : s.quickSort(); break;
-        case 5 : s.heapSort(); break;
+      //  case 5 : s.heapSort(); break;
         default: randomize(); break;
     }
 }
@@ -83,3 +83,6 @@ async function randomize(){
     }
 }
 export {randomize,speedToggle,frequencyToggle,sort,mute_unmute,goBackFromSort};
+
+
+

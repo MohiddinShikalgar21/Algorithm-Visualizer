@@ -36,7 +36,6 @@ class GraphAlgorithms{
                 temp.push(Number.MAX_VALUE); 
                 temp1.push(Number.MAX_VALUE); 
                 temp2.push([-1,-1]); 
-                
             }
             
             g_array.push(temp);
@@ -100,33 +99,6 @@ class GraphAlgorithms{
         this.inProgress = false;
     }
     
-    async dfs(){
-        this.inProgress = true;
-        var start = this.start, end = this.end, off = [1,0,-1,0,1], path=[], arr = this.arr;
-        
-        async function dfs_call(row,col){
-            
-            if(row<0 || row>=arr.length || col<0 || col>=arr[0].length || await isObstacle(arr[row][col]) || await isVisited(arr[row][col]))
-            return false;
-            if(row==end[0] && col==end[1]){
-                path.push([row,col]);
-                return true;
-            }
-            await markVisited(arr[row][col]);
-            for(let i = 0; i < 4; i++){
-                await sleep(7);
-                if(await dfs_call(row+off[i],col+off[i+1])){
-                    path.push([row,col]);
-                    return true;
-                }
-                
-            }
-            return false;
-        }
-        
-        await dfs_call(start[0],start[1])? await this.tracePathByPathArray(path) : alert('No path exists :(');
-        this.inProgress = false;
-    }
     
     async bfs(){
         this.inProgress = true;

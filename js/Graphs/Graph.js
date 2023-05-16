@@ -189,7 +189,6 @@ function graph_start(){
     switch(type){
         case 6: g.aStarPathFinding(); break;
         case 7: g.dijkstra(); break;
-        case 8: g.dfs(); break;
         case 9: g.bfs(); break;
         default: alert("Please select an algorithm first");
     }

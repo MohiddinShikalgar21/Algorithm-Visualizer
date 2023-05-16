@@ -133,29 +133,30 @@ class SortAlgorithms{
         this.inProgress = false;
     }
     
-    async selectionSort(){
-        this.inProgress = true;
-        var n = this.size;
-        for(let i = 0; i < n-1; i++){
-            var min = await this.height(i), min_index = i;
-            for(let j = i+1; j < n; j++){
-                var curr_height = await this.height(j)
-                await playNote(curr_height)*3;
-                await iterator.addIterator(this.objects,j,0);
-                await sleep(100-this.speed);
-                if(curr_height < min){
-                    min = curr_height;
-                    min_index = j;
-                }
-                await iterator.removeIterator(this.objects,j);
-            }
-            await this.swap(min_index,i,"index");
-            await iterator.addIterator(this.objects,i,1);
-            await sleep(100-this.speed);
-        }
-        await iterator.sortingEnd(this.objects,100-this.speed,this.height_obj);
-        this.inProgress = false;
-    }
+    // async selectionSort(){
+    //     this.inProgress = true;
+    //     var n = this.size;
+    //     for(let i = 0; i < n-1; i++){
+    //         var min = await this.height(i), min_index = i;
+    //         for(let j = i+1; j < n; j++){
+    //             var curr_height = await this.height(j)
+    //             await playNote(curr_height)*3;
+    //             await iterator.addIterator(this.objects,j,0);
+    //             await sleep(100-this.speed);
+    //             if(curr_height < min){
+    //                 min = curr_height;
+    //                 min_index = j;
+    //             }
+    //             await iterator.removeIterator(this.objects,j);
+    //         }
+    //         await this.swap(min_index,i,"index");
+    //         await iterator.addIterator(this.objects,i,1);
+    //         await sleep(100-this.speed);
+    //     }
+    //     await iterator.sortingEnd(this.objects,100-this.speed,this.height_obj);
+    //     this.inProgress = false;
+    // }
+
     async quick_sort(start,end){
         if(start>=end) 
         return;
@@ -193,60 +194,61 @@ class SortAlgorithms{
         await iterator.sortingEnd(this.objects,101-this.speed,this.height_obj);
         this.inProgress = false;
     }
-    async downHeapify(parent,n){
-        await playNote(await this.height(parent)*3);
-        await iterator.addIterator(this.objects,parent,0);
-        let leftChild = (parseInt(parent) * 2) + 1, rightChild = (parseInt(parent) * 2) + 2;
-        if(leftChild<n)
-        await iterator.addIterator(this.objects,leftChild,1);
-        if(rightChild<n)
-        await iterator.addIterator(this.objects,rightChild,1);
-        await sleep(110 - this.speed);
-        if(leftChild >= n  && rightChild >= n)
-        return;
-        let largestIndex = parent
-        if(leftChild < n && await this.height(leftChild) > await this.height(largestIndex))
-        largestIndex = leftChild;
-        if(rightChild < n && await this.height(rightChild) > await this.height(largestIndex))
-        largestIndex = rightChild;
+
+    // async downHeapify(parent,n){
+    //     await playNote(await this.height(parent)*3);
+    //     await iterator.addIterator(this.objects,parent,0);
+    //     let leftChild = (parseInt(parent) * 2) + 1, rightChild = (parseInt(parent) * 2) + 2;
+    //     if(leftChild<n)
+    //     await iterator.addIterator(this.objects,leftChild,1);
+    //     if(rightChild<n)
+    //     await iterator.addIterator(this.objects,rightChild,1);
+    //     await sleep(110 - this.speed);
+    //     if(leftChild >= n  && rightChild >= n)
+    //     return;
+    //     let largestIndex = parent
+    //     if(leftChild < n && await this.height(leftChild) > await this.height(largestIndex))
+    //     largestIndex = leftChild;
+    //     if(rightChild < n && await this.height(rightChild) > await this.height(largestIndex))
+    //     largestIndex = rightChild;
         
-        if(parent != largestIndex){
-            await this.swap(largestIndex,parent);
-            await sleep(110 - this.speed);
-            await iterator.addIterator(this.objects,parent,0);
-            await iterator.addIterator(this.objects,largestIndex,1);
-            await iterator.removeIterator(this.objects,parent);
-            await iterator.removeIterator(this.objects,rightChild);
-            await iterator.removeIterator(this.objects,leftChild);
-            await this.downHeapify(largestIndex,n);
-        }
-        await iterator.removeIterator(this.objects,parent);
-        await iterator.removeIterator(this.objects,rightChild);
-        await iterator.removeIterator(this.objects,leftChild);
-    }
-    async buildHeap(n){
-        var start = parseInt(parseInt(n)/2 + 1);
-        for(let i = start; i >= 0; i--){
-            await this.downHeapify(i,n);
-        }
-    }
-    async heap_sort(start,end){
-        await this.buildHeap(end+1);
-        for(let i = end; i>=1; i--){
-            await this.swap(0,i);
-            await sleep(110 - this.speed);
-            await this.downHeapify(0,i);
-            await iterator.addIterator(this.objects,i,2);
-        }
-    }
-    async heapSort(){
-        this.inProgress = true;
+    //     if(parent != largestIndex){
+    //         await this.swap(largestIndex,parent);
+    //         await sleep(110 - this.speed);
+    //         await iterator.addIterator(this.objects,parent,0);
+    //         await iterator.addIterator(this.objects,largestIndex,1);
+    //         await iterator.removeIterator(this.objects,parent);
+    //         await iterator.removeIterator(this.objects,rightChild);
+    //         await iterator.removeIterator(this.objects,leftChild);
+    //         await this.downHeapify(largestIndex,n);
+    //     }
+    //     await iterator.removeIterator(this.objects,parent);
+    //     await iterator.removeIterator(this.objects,rightChild);
+    //     await iterator.removeIterator(this.objects,leftChild);
+    // }
+    // async buildHeap(n){
+    //     var start = parseInt(parseInt(n)/2 + 1);
+    //     for(let i = start; i >= 0; i--){
+    //         await this.downHeapify(i,n);
+    //     }
+    // }
+    // async heap_sort(start,end){
+    //     await this.buildHeap(end+1);
+    //     for(let i = end; i>=1; i--){
+    //         await this.swap(0,i);
+    //         await sleep(110 - this.speed);
+    //         await this.downHeapify(0,i);
+    //         await iterator.addIterator(this.objects,i,2);
+    //     }
+    // }
+    // async heapSort(){
+    //     this.inProgress = true;
         
         
-        await this.heap_sort(0,this.size-1);
-        await iterator.sortingEnd(this.objects,120-this.speed,this.height_obj);
-        this.inProgress = false;
-    }
+    //     await this.heap_sort(0,this.size-1);
+    //     await iterator.sortingEnd(this.objects,120-this.speed,this.height_obj);
+    //     this.inProgress = false;
+    // }
     
 
     async swap(i,j){

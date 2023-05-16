@@ -49,7 +49,7 @@
     border: none !important;
 }
 
-.mode{
+.mode button{
     width: fit-content;
     height: fit-content;
     background-color: #0087b4; 
@@ -59,6 +59,12 @@
     animation-name: mode-animate;
     animation-duration: 0.5s;
     animation-fill-mode: both;
+    margin-top: 20px;
+    text-align: center;
+    text-indent: 0%;
+}
+.mode button:hover{
+    background-color: #d40857;
 }
 #options{
     display: flex;
@@ -102,6 +108,7 @@
     line-height: 2.6rem;
     
 }
+
 
 .cell{
     background-color:rgb(255, 255, 255);
